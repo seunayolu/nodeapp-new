@@ -3,3 +3,9 @@ node_modules
 .DS_Store
 
 .idea/*
+
+Jenkinsfile
+
+script.groovy
+
+profile-*.jpg
