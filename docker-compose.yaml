@@ -1,8 +1,9 @@
 # Docker Compose
-version: '3'
+version: '3.8'
 services:
   mongodb:
     image: mongo
+    container_name: mongodb
     ports:
      - 27017:27017
     environment:
@@ -12,6 +13,7 @@ services:
       - mongo-network
   mongo-express:
     image: mongo-express
+    container_name: mongo-express
     restart: always
     ports:
      - 8081:8081
