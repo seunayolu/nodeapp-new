@@ -1,39 +1,49 @@
-# Docker Compose
+# Docker Compose version
 version: '3.8'
+
+# Define the services for the application
 services:
+
+  # Node.js app service
   node-app:
-    image: nodeapp:dev
-    container_name: node-app
+    image: nodeapp:dev  # Docker image for the Node.js app
+    container_name: node-app  # Container name
     ports:
-     - 3000:3000
+      - 3000:3000  # Map port 3000 of the container to port 3000 on the host machine
     depends_on:
-     - mongodb
+      - mongodb  # Ensure that this service depends on the 'mongodb' service
     networks:
-     - mongo-network
+      - mongo-network  # Use the 'mongo-network' for communication
+
+  # MongoDB service
   mongodb:
-    image: mongo
-    container_name: mongodb
+    image: mongo  # Docker image for MongoDB
+    container_name: mongodb  # Container name
     ports:
-     - 27017:27017
+      - 27017:27017  # Map port 27017 of the container to port 27017 on the host machine
     environment:
-     - MONGO_INITDB_ROOT_USERNAME=admin
-     - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_ROOT_USERNAME=admin  # Set the MongoDB root username
+      - MONGO_INITDB_ROOT_PASSWORD=password  # Set the MongoDB root password
     networks:
-      - mongo-network
+      - mongo-network  # Use the 'mongo-network' for communication
+
+  # Mongo Express service for MongoDB web administration
   mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    restart: always
+    image: mongo-express  # Docker image for Mongo Express
+    container_name: mongo-express  # Container name
+    restart: always  # Always restart the container if it stops
     ports:
-     - 8081:8081
+      - 8081:8081  # Map port 8081 of the container to port 8081 on the host machine
     environment:
-     - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-     - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-     - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin  # Set Mongo Express admin username
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password  # Set Mongo Express admin password
+      - ME_CONFIG_MONGODB_SERVER=mongodb  # Set the MongoDB server to connect to
     networks:
-     - mongo-network
+      - mongo-network  # Use the 'mongo-network' for communication
     depends_on:
-     - "mongodb"
+      - "mongodb"  # Ensure that this service depends on the 'mongodb' service
+
+# Define the custom network for the containers to communicate
 networks:
   mongo-network:
-    driver: bridge
+    driver: bridge  # Use the bridge network driver for 'mongo-network'
