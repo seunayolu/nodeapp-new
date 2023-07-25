@@ -1,6 +1,15 @@
 # Docker Compose
 version: '3.8'
 services:
+  node-app:
+    image: nodeapp13:dev
+    container_name: node-app
+    ports:
+     - 3000:3000
+    depends_on:
+     - mongodb
+    networks:
+     - mongo-network
   mongodb:
     image: mongo
     container_name: mongodb
@@ -25,18 +34,6 @@ services:
      - mongo-network
     depends_on:
      - "mongodb"
-  node-app:
-    image: nodeapp13:dev
-    container_name: node-app
-    ports:
-     - 3000:3000
-    environment:
-     - MONGO_DB_USERNAME=admin
-     - MONGO_DB_PWD=password
-    depends_on:
-     - mongodb
-    networks:
-     - mongo-network
 networks:
   mongo-network:
     driver: bridge
