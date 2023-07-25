@@ -25,7 +25,15 @@ services:
       - mongo-network
     depends_on:
      - "mongodb"
-
+  node-app:
+    image: nodeapp13:dev
+    container_name: node-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - mongo-network
 networks:
   mongo-network:
     driver: bridge
