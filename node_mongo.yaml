@@ -26,6 +26,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password  # Set the MongoDB root password
     networks:
       - mongo-network  # Use the 'mongo-network' for communication
+    volumes:
+      - mongodb_data:/data/db
 
   # Mongo Express service for MongoDB web administration
   mongo-express:
@@ -43,7 +45,10 @@ services:
     depends_on:
       - "mongodb"  # Ensure that this service depends on the 'mongodb' service
 
-# Define the custom network for the containers to communicate
+# Define the custom named volume and network for the containers to persist data and communicate
+volumes:
+  mongodb_data:
+
 networks:
   mongo-network:
     driver: bridge  # Use the bridge network driver for 'mongo-network'
