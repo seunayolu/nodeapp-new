@@ -41,13 +41,13 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password  # Set Mongo Express admin password
       - ME_CONFIG_MONGODB_SERVER=mongodb  # Set the MongoDB server to connect to
     networks:
-      - mongo-network  # Use the 'mongo-network' for communication
+      - nodeapp  # Use the 'mongo-network' for communication
     depends_on:
       - "mongodb"  # Ensure that this service depends on the 'mongodb' service
 
 # Define the custom named volume and network for the containers to persist data and communicate
-volumes:
-  mongodb_data:
+#volumes:
+  #mongodb_data:
 
 networks:
   nodeapp:
