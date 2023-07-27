@@ -6,14 +6,14 @@ services:
 
   # Node.js app service
   node-app:
-    image: 392102158411.dkr.ecr.eu-west-2.amazonaws.com/node20:dev  # Docker image for the Node.js app
+    image: node20:dev  # Docker image for the Node.js app
     container_name: node-app  # Container name
     ports:
       - 3000:3000  # Map port 3000 of the container to port 3000 on the host machine
     depends_on:
       - mongodb  # Ensure that this service depends on the 'mongodb' service
     networks:
-      - mongo-network  # Use the 'mongo-network' for communication
+      - nodeapp  # Use the 'nodeapp' for communication
 
   # MongoDB service
   mongodb:
@@ -25,9 +25,9 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin  # Set the MongoDB root username
       - MONGO_INITDB_ROOT_PASSWORD=password  # Set the MongoDB root password
     networks:
-      - mongo-network  # Use the 'mongo-network' for communication
-    volumes:
-      - mongodb_data:/data/db
+      - nodeapp  # Use the 'nodeapp' for communication
+    #volumes:
+      #- mongodb_data:/data/db
 
   # Mongo Express service for MongoDB web administration
   mongo-express:
@@ -50,5 +50,5 @@ volumes:
   mongodb_data:
 
 networks:
-  mongo-network:
+  nodeapp:
     driver: bridge  # Use the bridge network driver for 'mongo-network'
