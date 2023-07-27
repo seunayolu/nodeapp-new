@@ -6,7 +6,7 @@ services:
 
   # Node.js app service
   node-app:
-    image: node20:dev  # Docker image for the Node.js app
+    image: nodeapp:dev  # Docker image for the Node.js app
     container_name: node-app  # Container name
     ports:
       - 3000:3000  # Map port 3000 of the container to port 3000 on the host machine
