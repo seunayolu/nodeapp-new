@@ -6,7 +6,7 @@ services:
 
   # Node.js app service
   node-app:
-    image: devopsacad/nodeapp:1.1  # Docker image for the Node.js app
+    image: 13.40.33.115:8083/nodeapp:1.1  # Docker image for the Node.js app
     container_name: node-app  # Container name
     ports:
       - 3000:3000  # Map port 3000 of the container to port 3000 on the host machine
