@@ -26,8 +26,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password  # Set the MongoDB root password
     networks:
       - mongo-network  # Use the 'nodeapp' for communication
-    #volumes:
-      #- mongodb_data:/data/db
+    volumes:
+      - mongodb_data:/data/db
 
   # Mongo Express service for MongoDB web administration
   mongo-express:
@@ -46,8 +46,8 @@ services:
       - "mongodb"  # Ensure that this service depends on the 'mongodb' service
 
 # Define the custom named volume and network for the containers to persist data and communicate
-#volumes:
-  #mongodb_data:
+volumes:
+  mongodb_data:
 
 networks:
   mongo-network:
