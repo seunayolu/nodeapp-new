@@ -6,7 +6,7 @@ services:
 
   # Node.js app service
   node-app:
-    image: devopsacad/nodeapp:1.1  # Docker image for the Node.js app
+    image: 13.40.33.115:8081/repository/docker-hosted/v2/nodeapp/manifests/1.1  # Docker image for the Node.js app
     container_name: node-app  # Container name
     ports:
       - 3000:3000  # Map port 3000 of the container to port 3000 on the host machine
@@ -35,7 +35,7 @@ services:
     container_name: mongo-express  # Container name
     restart: always  # Always restart the container if it stops
     ports:
-      - 8081:8081  # Map port 8081 of the container to port 8081 on the host machine
+      - 8082:8081  # Map port 8081 of the container to port 8081 on the host machine
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin  # Set Mongo Express admin username
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password  # Set Mongo Express admin password
